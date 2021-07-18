@@ -1,0 +1,29 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "Test project 1",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./index.js --exec babel-node -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KidusGebrgiorgis/Project-1.git"
+  },
+  "author": "Kidus Gebrgiorgis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KidusGebrgiorgis/Project-1/issues"
+  },
+  "homepage": "https://github.com/KidusGebrgiorgis/Project-1#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io-parser": "^4.0.4",
+    "socketio": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
