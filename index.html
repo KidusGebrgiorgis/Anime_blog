@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src = "/socket.io/socket.io.js"></script>
 <!--embedded styling -->
 <style >
     nav{
@@ -38,7 +39,7 @@
 
         </div>
         <div id ="messages">
-
+        
         </div>
     </div>
 
@@ -49,16 +50,29 @@
 </body>
 </html>
 <script>
+    var socket = io()
     $(() => {
         $("#send").click(() => {
-        var message = {name: $("#name").val(), message: $("#message").val()}
+        var message = {name: $("#name").val(), message: $("#message").val(), like: $("#like").val("0")}
         post_message(message)
         });
-        get_message()
+        get_message() 
     })
 
+    socket.on('message', add_message)
+
     function add_message(message){
+        var like_button = $('<input/>').attr({
+            type: "button",
+            id: "like",
+            value:"like:"+ message.like
+        })
         $("#messages").append(`<h4> ${message.name} </h4> <p>${message.message}</p>`)
+        $("#messages").append(like_button.click(()=>{
+            var liked = message
+            liked.like += 1 
+            update_like(liked)
+        }))
     }
 
     function get_message(){
@@ -71,5 +85,9 @@
     
     function post_message(message){
         $.post('http://localhost:3001/message',message)
+    } 
+    
+    function update_like(message){
+        $.post('http://localhost:3001/message', message)
     }
 </script>
