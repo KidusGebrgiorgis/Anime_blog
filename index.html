@@ -53,7 +53,7 @@
     var socket = io()
     $(() => {
         $("#send").click(() => {
-        var message = {name: $("#name").val(), message: $("#message").val(), like: $("#like").val("0")}
+        var message = {name: $("#name").val(), message: $("#message").val(), like: 0}
         post_message(message)
         });
         get_message() 
@@ -70,7 +70,7 @@
         $("#messages").append(`<h4> ${message.name} </h4> <p>${message.message}</p>`)
         $("#messages").append(like_button.click(()=>{
             var liked = message
-            liked.like += 1 
+            liked.like = String(int(liked.like)+1)
             update_like(liked)
         }))
     }
