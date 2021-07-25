@@ -8,34 +8,43 @@ const dbURL = "mongodb+srv://kidusg:Password12..@chatapp.lqkh8.mongodb.net/myFir
 
 var http = require('http').Server(app)
 var io = require('socket.io')(http)
+var MongoClient = require("mongodb").MongoClient;
 
 var Message = mongoose.model("messages",{
        name: String,
        message: String,
-       likes: Number
+       likes: Number 
 })
 
 app.use(express.static(__dirname))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
- app.get("/message",(req,res) =>{
-        Message.find({},(err,message)=>{
-              res.send(message)     
-        })
- })
- app.post("/message", (req,res) =>{
-        var message = new Message(req.body)
-        
-        message.save((err) =>{
+app.route("/message")
+       .get((req,res) =>{
+              Message.find({},(err,message)=>{
+                     res.send(message)     
+              })
+       })
+       .post((req,res)=>{
+              var message = new Message(req.body)
+
+              message.save((err) =>{
               if(err) sendStatus(500)
 
               io.emit("message", req.body)
               res.sendStatus(200)
        })
  })
+ app.get("/message/:name",(req,res)=>{
+        var user = String(req.params.name)
+        Message.find({name:user},(err,message)=>{
+               if(err) throw err
+              res.send(message)      
+        })
+ })
 
- io.on('connection', (socket) =>{
+ io.on('connection', (socket) =>{ 
         console.log("user connected")
  })
  mongoose.connect(dbURL,{  
@@ -45,6 +54,22 @@ app.use(bodyParser.urlencoded({extended: false}))
               useCreateIndex: true },(err)=>{
         console.log("mongodb connected", err)
  })
+ /*app.put("/message",(req,res) =>{
+        var message = new Message(req.body)
+        
+        message.update((err) =>{
+               if(err) throw err
+               
+               message.like = Number(parseInt(message.like) + 1)
+        })
+
+ })
+ *     
+ /*MongoClient.connect(dbURL,(err,db)=>{
+        if(err) throw err
+        var dbo = db.db("chatApp")
+        dbo.collection("message").updateOne()     
+ })*/
 
  http.listen(PORT, ()=>
     console.log('listening on port', PORT));
