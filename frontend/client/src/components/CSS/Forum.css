@@ -1,0 +1,35 @@
+.forum-block{
+    background-color: rgb(224, 215, 215);
+    width: 100%;
+    border: 1px solid black;
+    height:20%; 
+    margin: 1%;
+}
+.forum-info{
+    display: inline-block;
+    margin:0 auto;
+}
+.forum-likes{
+    text-align: center;
+}
+.wide{
+    width: 90%;
+    border-left:1px solid black;
+    background-color: white;
+}
+.wide2{
+    width:10%;
+    height: 100%;
+    vertical-align: top;
+}
+.wide3{
+    width:35%
+}
+
+.message_container{
+    width:90%;
+    margin:0 auto;
+}
+.btn4{
+    float:right;
+}

@@ -1,0 +1,83 @@
+.about-container{
+    background-color: rgb(232, 112, 112);
+    color:white;
+}
+
+.contact-information{
+    margin:0 auto;
+    text-align: center;
+    margin-top:10%;
+    margin-bottom: 5%;
+}
+.contact-column{
+    display:inline-block;
+    width:20%;
+    margin:2%;
+    text-align: left;
+    vertical-align: top;
+}
+.contact-column p1{
+    display:
+}
+.contact-more{
+    width: 80%;
+    margin: 0 auto;
+    padding:2%;
+
+}
+.conImage{
+    height:70%;
+    width: 60%;
+    float:right;
+    margin-right:2%;
+    padding-top: 15%;
+
+}
+.about{
+    width:100%;
+    padding:3%;
+}
+.about-info{
+    height:100%;
+    width: 40%;
+    margin:0 auto;
+    display:inline-block;
+}
+.con-more{
+    display: inline-block;
+    vertical-align:top;
+}
+
+.btn3{
+    size:20px;
+    border-color: white;
+    color:white;
+}
+.contact-more{
+    margin-bottom:5%;
+    background-color: rgb(232, 112, 112);
+    color:white;
+}
+.left{
+    margin-left: 5%;
+}
+.btn3:hover{
+    background-color: white;
+    color:black;
+    border-color: white;
+}
+.mobile{
+    display:none;
+}
+.mobile2{
+    display: block;
+}
+@media only screen and (max-width: 800px){
+    .mobile{
+        display: block;
+    }
+    .mobile2{
+        display: none;
+    }
+
+}

@@ -1,0 +1,14 @@
+.Login_container{
+    width: 40%;
+    margin: 0 auto;
+}
+.Login_header{
+    background-color: cornflowerblue;
+    text-align: center;
+}
+.UserName .Password{
+    align-content: center;
+}
+.forgot_password{
+    text-align: right;
+}
